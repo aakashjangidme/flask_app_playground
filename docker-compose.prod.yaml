@@ -1,0 +1,28 @@
+version: '3'
+
+services: 
+  flaskapp:
+    container_name: flaskapp-python
+    image: aakashjangidme/flaskapp-python 
+    restart: always
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod
+    command: gunicorn -c gunicorn_config.py application:gunicorn_app
+    volumes: 
+      - app_data:/app
+    env_file:
+      - ./.env.prod
+
+  reverse_proxy:
+    image: aakashjangidme/flaskapp-python-nginx
+    container_name: flaskapp-python-nginx
+    restart: always
+    build: ./nginx
+    ports: 
+      - '80:80'
+    depends_on: 
+      - flaskapp
+
+volumes: 
+  app_data:

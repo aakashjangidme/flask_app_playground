@@ -1,0 +1,10 @@
+Dockerfile
+.git
+
+README.md
+.venv
+__pycache__/
+.vscode
+.idea
+#Ignoring git and cache folders
+.cache
