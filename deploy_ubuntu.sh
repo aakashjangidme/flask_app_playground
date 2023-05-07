@@ -34,15 +34,15 @@ sudo nano /etc/systemd/system/myflaskapp.service
 #---or 
 
 # [Unit]
-# Description=Gunicorn instance to serve myproject
+# Description=Gunicorn instance to serve flask_app_playground
 # After=network.target
 
 # [Service]
-# User=sammy
+# User=appweb
 # Group=www-data
-# WorkingDirectory=/home/sammy/myproject
-# Environment="PATH=/home/sammy/myproject/myprojectenv/bin"
-# ExecStart=/home/sammy/myproject/myprojectenv/bin/gunicorn --workers 3 --bind unix:myproject.sock -m 007 wsgi:app
+# WorkingDirectory=/home/appweb/flask_app_playground
+# Environment="PATH=/home/appweb/flask_app_playground/venv/bin"
+# ExecStart=/home/appweb/flask_app_playground/venv/bin/gunicorn  --config gunicorn_config.py application:gunicorn_app
 
 # [Install]
 # WantedBy=multi-user.target
